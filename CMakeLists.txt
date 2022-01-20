@@ -1,0 +1,21 @@
+cmake_minimum_required(VERSION 3.22)
+
+project(${CONAN_PKG_NAME} 
+    VERSION ${CONAN_PKG_VERSION}
+    LANGUAGES CXX
+)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
+
+add_subdirectory(src)
+
+install(DIRECTORY include/ DESTINATION include)
+
+if(NOT PROJECT_SKIP_TESTS)
+    enable_testing()
+    add_subdirectory(test/unit)
+endif()
