@@ -1,3 +1,7 @@
+####################################################################################################
+## Copyright (c) 2022 Braden Hitchcock - MIT License (https://opensource.org/licenses/MIT)        ##
+####################################################################################################
+
 import os
 
 from conans import ConanFile, CMake, tools
