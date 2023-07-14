@@ -6,7 +6,7 @@ from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain, cmake_layout
 
 
 class ConanProject(ConanFile):
-    name = "hc_template"
+    name = "hc_project"
     version = "0.1.0"
 
     description = "<Description of Project here>"
@@ -74,4 +74,4 @@ class ConanProject(ConanFile):
         cmake.install()
 
     def package_info(self):
-        self.cpp_info.libs = ["hc_template"]
+        self.cpp_info.libs = ["hc_project"]
