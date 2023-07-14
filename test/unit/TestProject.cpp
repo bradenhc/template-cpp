@@ -1,11 +1,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Copyright (c) 2022 Braden Hitchcock - MIT License (https://opensource.org/licenses/MIT)        //
+// Copyright 2023 Braden Hitchcock - MIT License            (https://opensource.org/licenses/MIT) //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-#include <project/project.h>
+#include <hc/project/hello.h>
 
 #include <gtest/gtest.h>
 
 TEST(Project, ShouldSayHello) {
-    EXPECT_EQ(project::say_hello(), "Hello, world!");
+    EXPECT_EQ(hc::project::say_hello(), "Hello, world!");
     SUCCEED();
 }

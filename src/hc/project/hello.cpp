@@ -3,9 +3,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #include <hc/project/hello.h>
 
-#include <iostream>
+namespace hc::project {
 
-int main() {
-    std::cout << hc::project::say_hello() << std::endl;
-    return 0;
+std::string say_hello() {
+    return "Hello, world!";
 }
+
+}  // namespace hc::project

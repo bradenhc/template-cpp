@@ -1,8 +1,8 @@
-####################################################################################################
-## Copyright (c) 2022 Braden Hitchcock - MIT License (https://opensource.org/licenses/MIT)        ##
-####################################################################################################
+########################################################################################
+## Copyright 2023 Braden Hitchcock - MIT License  https://opensource.org/licenses/MIT ##
+########################################################################################
 
-find_package(GTest 1.10.0 REQUIRED)
+find_package(GTest 1.13.0 REQUIRED)
 include(GoogleTest)
 
 set(TEST test_project)

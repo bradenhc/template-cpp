@@ -1,9 +1,25 @@
+Language: Cpp
+AccessModifierOffset: 0
+AlignAfterOpenBracket: BlockIndent
+AllowShortBlocksOnASingleLine: Empty
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: WithoutElse
 BasedOnStyle: Google
-IndentWidth: 4
+BreakBeforeBinaryOperators: All
+BreakBeforeConceptDeclarations: true
 ColumnLimit: 100
-UseTab: Never
 DerivePointerAlignment: false
-PointerAlignment: Left
 FixNamespaceComments: true
-AllowShortFunctionsOnASingleLine: None
-AccessModifierOffset: -1
+IndentPPDirectives: AfterHash
+IndentRequiresClause: false
+IncludeBlocks: Preserve
+IndentWidth: 4
+NamespaceIndentation: None
+PointerAlignment: Left
+RequiresClausePosition: OwnLine
+SpaceBeforeParens: Custom
+SpaceBeforeParensOptions:
+  AfterRequiresInClause: true
+  AfterRequiresInExpression: true
+TabWidth: 4
+UseTab: Never

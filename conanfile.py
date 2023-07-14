@@ -1,50 +1,77 @@
-####################################################################################################
-## Copyright (c) 2022 Braden Hitchcock - MIT License (https://opensource.org/licenses/MIT)        ##
-####################################################################################################
-from conans import ConanFile, CMake, tools
+########################################################################################
+## Copyright 2023 Braden Hitchcock - MIT License  https://opensource.org/licenses/MIT ##
+########################################################################################
+from conan import ConanFile
+from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain, cmake_layout
 
 
-class ProjectConan(ConanFile):
-    name = "project_template"
+class ConanProject(ConanFile):
+    name = "hc_template"
     version = "0.1.0"
+
     description = "<Description of Project here>"
-
-    license = "<Put the package license here>"
-
     author = "<Put your name here> <And your email here>"
     url = "<Package recipe repository url here, for issues about the package>"
+    license = "<Put the package license here>"
 
-    topics = ("<Put some tag here>", "<here>", "<and here>")
+    topics = "cpp"
 
     settings = "os", "compiler", "build_type", "arch"
 
-    options = {"shared": [True, False] }
-    default_options = {"shared": False }
+    options = {
+        "coverage": [True, False],
+        "fPIC": [True, False],
+        "shared": [True, False],
+    }
 
-    generators = "cmake_find_package"
+    default_options = {"coverage": True, "fPIC": True, "shared": False}
 
-    exports_sources = "CMakeLists.txt", "src/*", "include/*"
+    exports_sources = (
+        "CMakeLists.txt",
+        "src/*",
+        "include/*",
+        "test/*",
+        "docs/*",
+        "LICENSE",
+        "README.md",
+    )
+
+    def configure(self):
+        if self.conf.get("user.build:coverage"):
+            self.options.coverage = True
 
     def build_requirements(self):
-        self.build_requires("gtest/1.10.0")
+        self.test_requires("gtest/1.13.0")
 
     def requirements(self):
         pass
 
-    def _setup_cmake(self):
-        cmake = CMake(self)
-        cmake.definitions["CONAN_PKG_NAME"] = self.name
-        cmake.definitions["CONAN_PKG_VERSION"] = self.version
-        return cmake
+    def layout(self):
+        cmake_layout(self)
+
+    def generate(self):
+        deps = CMakeDeps(self)
+        deps.generate()
+        tc = CMakeToolchain(self)
+        tc.variables["CONAN_PKG_NAME"] = self.name
+        tc.variables["CONAN_PKG_VERSION"] = self.version
+        tc.variables["HC_DISABLE_TESTS"] = self.conf.get("tools.build:skip_test", False)
+        tc.variables["HC_SHARED"] = self.options.shared
+        if self.options.coverage:
+            tc.variables["HC_ENABLE_COVERAGE"] = True
+            tc.variables["HC_DISABLE_COMPONENT_TESTS"] = True
+        elif self.conf.get("user.build:skip_component_test"):
+            tc.variables["HC_DISABLE_COMPONENT_TESTS"] = True
+        tc.generate()
 
     def build(self):
-        cmake = self._setup_cmake()
+        cmake = CMake(self)
         cmake.configure()
         cmake.build()
 
     def package(self):
-        cmake = self._setup_cmake()
+        cmake = CMake(self)
         cmake.install()
 
     def package_info(self):
-        self.cpp_info.libs = tools.collect_libs(self)
+        self.cpp_info.libs = ["hc_template"]
