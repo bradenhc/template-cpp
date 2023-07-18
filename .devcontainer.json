@@ -2,7 +2,12 @@
     "image": "bradenhc/dev-cpp:0.3.0",
     "customizations": {
         "vscode": {
-            "extensions": ["llvm-vs-code-extensions.vscode-clangd", "ms-vscode.cmake-tools"]
+            "extensions": [
+                "llvm-vs-code-extensions.vscode-clangd",
+                "ms-vscode.cmake-tools",
+                "ms-python.python",
+                "ms-python.black-formatter"
+            ]
         }
     }
 }
