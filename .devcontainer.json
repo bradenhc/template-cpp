@@ -4,9 +4,10 @@
         "vscode": {
             "extensions": [
                 "llvm-vs-code-extensions.vscode-clangd",
-                "ms-vscode.cmake-tools",
                 "ms-python.python",
-                "ms-python.black-formatter"
+                "ms-python.black-formatter",
+                "ms-vscode.cmake-tools",
+                "ms-vscode.cpptools"
             ]
         }
     }
